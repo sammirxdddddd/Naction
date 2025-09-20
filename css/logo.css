@@ -1,0 +1,41 @@
+.header .logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+
+.header .logo img {
+    width: 35px;
+    height: 35px;
+    object-fit: contain;
+}
+
+.header .logo span {
+    color: #2196f3;
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.header .logo:hover {
+    transform: scale(1.05);
+}
+
+@media (max-width: 767px) {
+    .header .logo img {
+        width: 30px;
+        height: 30px;
+    }
+    
+    .header .logo span {
+        font-size: 18px;
+    }
+}
+    }
+    
+    .header .logo span {
+        font-size: 22px;
+    }
+}
