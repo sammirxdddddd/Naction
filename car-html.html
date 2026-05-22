@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naction Cars</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/header.css">
+    <link rel="stylesheet" href="css/logo.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        body{
+            margin:0;
+            background:#111;
+            color:white;
+            font-family:Arial, sans-serif;
+        }
+
+        header{
+            width:100%;
+            padding:20px;
+            background:#1b1b1b;
+            display:flex;
+            justify-content:center;
+            align-items:center;
+            box-sizing:border-box;
+        }
+
+        .logo{
+            width:180px;
+            max-width:90%;
+        }
+
+        .cars{
+            width:100%;
+            display:grid;
+            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+            gap:20px;
+            padding:20px;
+            box-sizing:border-box;
+        }
+
+        .car{
+            background:#1f1f1f;
+            border-radius:15px;
+            overflow:hidden;
+            transition:0.2s;
+        }
+
+        .car:hover{
+            transform:scale(1.03);
+        }
+
+        .car img{
+            width:100%;
+            height:160px;
+            object-fit:cover;
+            display:block;
+        }
+
+        .car-info{
+            padding:15px;
+        }
+
+        .car-info h2{
+            margin:0;
+            font-size:20px;
+        }
+
+        .price{
+            margin-top:10px;
+            font-size:18px;
+            color:#00ff88;
+        }
+
+        @media(max-width:600px){
+
+            .cars{
+                grid-template-columns:1fr;
+                padding:10px;
+            }
+
+            .car img{
+                height:200px;
+            }
+
+            .logo{
+                width:140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="img/logo.png" class="logo">
+</header>
+
+<section class="cars" id="cars"></section>
+
+<script>
+
+const coches = [
+
+    {
+        nombre: "Naction GT",
+        precio: "45.000€",
+        imagen: "img/coche1.jpg"
+    },
+
+    {
+        nombre: "Naction Sport",
+        precio: "60.000€",
+        imagen: "img/coche2.jpg"
+    },
+
+    {
+        nombre: "Naction X",
+        precio: "89.000€",
+        imagen: "img/coche3.jpg"
+    }
+
+];
+
+const carsContainer = document.getElementById("cars");
+
+coches.forEach(coche => {
+
+    carsContainer.innerHTML += `
+    
+    <div class="car">
+
+        <img src="${coche.imagen}">
+
+        <div class="car-info">
+            <h2>${coche.nombre}</h2>
+            <div class="price">${coche.precio}</div>
+        </div>
+
+    </div>
+    
+    `;
+
+});
+
+</script>
+
+</body>
+</html>
