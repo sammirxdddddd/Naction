@@ -1,151 +1,628 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naction Cars</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- CSS -->
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/header.css">
-    <link rel="stylesheet" href="css/logo.css">
-    <link rel="stylesheet" href="css/style.css">
+<title>Naction Cars</title>
 
-    <style>
-        body{
-            margin:0;
-            background:#111;
-            color:white;
-            font-family:Arial, sans-serif;
-        }
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/all.min.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/logo.css">
+<link rel="stylesheet" href="css/style.css">
 
-        header{
-            width:100%;
-            padding:20px;
-            background:#1b1b1b;
-            display:flex;
-            justify-content:center;
-            align-items:center;
-            box-sizing:border-box;
-        }
+<style>
 
-        .logo{
-            width:180px;
-            max-width:90%;
-        }
+:root{
 
-        .cars{
-            width:100%;
-            display:grid;
-            grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-            gap:20px;
-            padding:20px;
-            box-sizing:border-box;
-        }
+    --bg:#0b0b0b;
+    --card:#151515;
+    --card2:#1d1d1d;
+    --text:white;
+    --sub:#bdbdbd;
+    --border:rgba(255,255,255,0.08);
 
-        .car{
-            background:#1f1f1f;
-            border-radius:15px;
-            overflow:hidden;
-            transition:0.2s;
-        }
+}
 
-        .car:hover{
-            transform:scale(1.03);
-        }
+body.light{
 
-        .car img{
-            width:100%;
-            height:160px;
-            object-fit:cover;
-            display:block;
-        }
+    --bg:#eeeeee;
+    --card:#ffffff;
+    --card2:#f5f5f5;
+    --text:#111;
+    --sub:#555;
+    --border:rgba(0,0,0,0.08);
 
-        .car-info{
-            padding:15px;
-        }
+}
 
-        .car-info h2{
-            margin:0;
-            font-size:20px;
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        .price{
-            margin-top:10px;
-            font-size:18px;
-            color:#00ff88;
-        }
+body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:Arial, sans-serif;
+    transition:0.3s;
+    overflow-x:hidden;
+}
 
-        @media(max-width:600px){
+/* HEADER */
 
-            .cars{
-                grid-template-columns:1fr;
-                padding:10px;
-            }
+header{
+    width:100%;
+    height:85px;
 
-            .car img{
-                height:200px;
-            }
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 
-            .logo{
-                width:140px;
-            }
-        }
-    </style>
+    padding:0 20px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    background:rgba(0,0,0,0.5);
+    backdrop-filter:blur(10px);
+
+    border-bottom:1px solid var(--border);
+}
+
+.logo{
+    width:180px;
+}
+
+/* BOTON TEMA */
+
+.theme-btn{
+
+    width:50px;
+    height:50px;
+
+    border:none;
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:20px;
+
+    background:var(--card);
+    color:var(--text);
+
+    transition:0.2s;
+}
+
+.theme-btn:hover{
+    transform:scale(1.05);
+}
+
+/* HERO */
+
+.hero{
+    width:100%;
+    padding:70px 20px;
+    text-align:center;
+}
+
+.hero h1{
+    font-size:clamp(40px,8vw,100px);
+    font-weight:900;
+    margin-bottom:15px;
+}
+
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:var(--sub);
+    font-size:18px;
+    line-height:1.6;
+}
+
+/* GRID */
+
+.cars{
+    width:100%;
+    padding:30px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+
+    gap:30px;
+}
+
+/* CARD */
+
+.car{
+    background:linear-gradient(180deg,var(--card),var(--card2));
+    border-radius:25px;
+    overflow:hidden;
+
+    border:1px solid var(--border);
+
+    transition:0.25s;
+}
+
+.car:hover{
+    transform:translateY(-8px);
+}
+
+.car img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.car-content{
+    padding:25px;
+}
+
+.car-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+}
+
+.car-name{
+    font-size:28px;
+    font-weight:900;
+}
+
+.price{
+    color:#00ff95;
+    font-size:22px;
+    font-weight:bold;
+}
+
+/* SPECS */
+
+.specs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:20px;
+}
+
+.spec{
+    padding:10px 15px;
+    background:rgba(255,255,255,0.05);
+    border-radius:12px;
+    font-size:14px;
+}
+
+/* BOTON */
+
+.view-btn{
+
+    width:100%;
+    padding:15px;
+    margin-top:25px;
+
+    border:none;
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:17px;
+    font-weight:bold;
+
+    background:white;
+    color:black;
+
+    transition:0.2s;
+}
+
+.view-btn:hover{
+    transform:scale(1.02);
+}
+
+/* MODAL */
+
+.modal{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.8);
+
+    display:none;
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    z-index:2000;
+}
+
+.modal-box{
+
+    width:100%;
+    max-width:900px;
+
+    background:var(--card);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    animation:show 0.2s;
+}
+
+@keyframes show{
+
+    from{
+        transform:scale(0.9);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+
+}
+
+.modal-img{
+    width:100%;
+    height:450px;
+    object-fit:cover;
+}
+
+/* MINI IMAGENES */
+
+.gallery{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    overflow:auto;
+}
+
+.gallery img{
+
+    width:120px;
+    height:80px;
+
+    object-fit:cover;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    border:2px solid transparent;
+
+    transition:0.2s;
+}
+
+.gallery img:hover{
+    border-color:white;
+}
+
+/* INFO MODAL */
+
+.modal-info{
+    padding:25px;
+}
+
+.modal-title{
+    font-size:35px;
+    font-weight:900;
+}
+
+.modal-price{
+    color:#00ff95;
+    font-size:25px;
+    margin-top:10px;
+}
+
+.close-btn{
+
+    margin-top:25px;
+
+    width:100%;
+    padding:15px;
+
+    border:none;
+    border-radius:15px;
+
+    cursor:pointer;
+
+    font-size:17px;
+    font-weight:bold;
+
+    background:#ff3c3c;
+    color:white;
+}
+
+/* MOVIL */
+
+@media(max-width:700px){
+
+    .cars{
+        padding:15px;
+        gap:20px;
+    }
+
+    .car-name{
+        font-size:22px;
+    }
+
+    .modal-img{
+        height:250px;
+    }
+
+    .gallery img{
+        width:90px;
+        height:65px;
+    }
+
+    .modal-title{
+        font-size:28px;
+    }
+
+}
+
+</style>
 </head>
 <body>
 
 <header>
+
     <img src="img/logo.png" class="logo">
+
+    <button class="theme-btn" id="themeBtn">
+        🌙
+    </button>
+
 </header>
+
+<section class="hero">
+
+    <h1>NACTION</h1>
+
+    <p>
+        Coches deportivos premium con diseño moderno,
+        velocidad extrema y tecnología futurista.
+    </p>
+
+</section>
 
 <section class="cars" id="cars"></section>
 
-<script>
+<!-- MODAL -->
 
-const coches = [
+<div class="modal" id="modal">
 
-    {
-        nombre: "Naction GT",
-        precio: "45.000€",
-        imagen: "img/coche1.jpg"
-    },
+    <div class="modal-box">
 
-    {
-        nombre: "Naction Sport",
-        precio: "60.000€",
-        imagen: "img/coche2.jpg"
-    },
+        <img src="" class="modal-img" id="modalImg">
 
-    {
-        nombre: "Naction X",
-        precio: "89.000€",
-        imagen: "img/coche3.jpg"
-    }
+        <div class="gallery" id="gallery"></div>
 
-];
+        <div class="modal-info">
 
-const carsContainer = document.getElementById("cars");
+            <div class="modal-title" id="modalTitle"></div>
 
-coches.forEach(coche => {
+            <div class="modal-price" id="modalPrice"></div>
 
-    carsContainer.innerHTML += `
-    
-    <div class="car">
+            <button class="close-btn" onclick="closeModal()">
+                Cerrar
+            </button>
 
-        <img src="${coche.imagen}">
-
-        <div class="car-info">
-            <h2>${coche.nombre}</h2>
-            <div class="price">${coche.precio}</div>
         </div>
 
     </div>
-    
-    `;
+
+</div>
+
+<script>
+
+/*
+==================================
+MODIFICA FACILMENTE LOS COCHES
+==================================
+*/
+
+const coches = [
+
+{
+    nombre:"Naction GT",
+    precio:"45.000€",
+
+    imagenes:[
+        "img/coche1.jpg",
+        "img/coche1-2.jpg",
+        "img/coche1-3.jpg"
+    ],
+
+    velocidad:"320 KM/H",
+    motor:"V8 Turbo",
+    potencia:"720HP"
+},
+
+{
+    nombre:"Naction R",
+    precio:"68.000€",
+
+    imagenes:[
+        "img/coche2.jpg",
+        "img/coche2-2.jpg",
+        "img/coche2-3.jpg"
+    ],
+
+    velocidad:"350 KM/H",
+    motor:"V10",
+    potencia:"840HP"
+},
+
+{
+    nombre:"Naction Phantom",
+    precio:"120.000€",
+
+    imagenes:[
+        "img/coche3.jpg",
+        "img/coche3-2.jpg",
+        "img/coche3-3.jpg"
+    ],
+
+    velocidad:"410 KM/H",
+    motor:"Electric",
+    potencia:"1400HP"
+}
+
+];
+
+/*
+==================================
+GENERAR COCHES
+==================================
+*/
+
+const cars = document.getElementById("cars");
+
+coches.forEach((coche,index)=>{
+
+cars.innerHTML += `
+
+<div class="car">
+
+    <img src="${coche.imagenes[0]}">
+
+    <div class="car-content">
+
+        <div class="car-top">
+
+            <div class="car-name">
+                ${coche.nombre}
+            </div>
+
+            <div class="price">
+                ${coche.precio}
+            </div>
+
+        </div>
+
+        <div class="specs">
+
+            <div class="spec">
+                🚀 ${coche.velocidad}
+            </div>
+
+            <div class="spec">
+                🔥 ${coche.motor}
+            </div>
+
+            <div class="spec">
+                ⚡ ${coche.potencia}
+            </div>
+
+        </div>
+
+        <button class="view-btn" onclick="openCar(${index})">
+            Ver coche
+        </button>
+
+    </div>
+
+</div>
+
+`;
 
 });
+
+/*
+==================================
+MODAL
+==================================
+*/
+
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalTitle = document.getElementById("modalTitle");
+const modalPrice = document.getElementById("modalPrice");
+const gallery = document.getElementById("gallery");
+
+function openCar(index){
+
+    const coche = coches[index];
+
+    modal.style.display = "flex";
+
+    modalImg.src = coche.imagenes[0];
+
+    modalTitle.innerHTML = coche.nombre;
+
+    modalPrice.innerHTML = coche.precio;
+
+    gallery.innerHTML = "";
+
+    coche.imagenes.forEach(img => {
+
+        gallery.innerHTML += `
+        
+        <img src="${img}" onclick="changeImage('${img}')">
+        
+        `;
+
+    });
+
+}
+
+function changeImage(img){
+
+    modalImg.src = img;
+
+}
+
+function closeModal(){
+
+    modal.style.display = "none";
+
+}
+
+/*
+==================================
+MODO OSCURO / CLARO
+==================================
+*/
+
+const themeBtn = document.getElementById("themeBtn");
+
+themeBtn.onclick = ()=>{
+
+    document.body.classList.toggle("light");
+
+    if(document.body.classList.contains("light")){
+
+        themeBtn.innerHTML = "☀️";
+
+    }else{
+
+        themeBtn.innerHTML = "🌙";
+
+    }
+
+};
+
+/*
+==================================
+CERRAR MODAL SI TOCA FUERA
+==================================
+*/
+
+window.onclick = (e)=>{
+
+    if(e.target == modal){
+
+        closeModal();
+
+    }
+
+};
 
 </script>
 
